@@ -1,13 +1,15 @@
 #pragma once
 
 #include "SDL2/SDL.h"
-#include<vector>
+#include <vector>
+#include "polygon.h"
+#include <iostream>
 
 class Screen {
 	SDL_Event event;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	std::vector<SDL_FPoint> points;
+	std::vector<Polygon> polygons;
 
 public:
 	Screen() {
@@ -16,24 +18,32 @@ public:
 		SDL_RenderSetScale(renderer, 2, 2);
 	}
 
-	void pixel(float x, float y) {
-		points.emplace_back(SDL_FPoint{x, y});
+	void addPolygon(Polygon &polygon) {
+		polygons.emplace_back(polygon);
 	}
 
-	void show() {
+	void showPolygons() {
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-		for (auto& point : points) {
-			SDL_RenderDrawPointF(renderer, point.x, point.y);
+		for (auto& polygon : polygons) {
+			for (auto& point : polygon.getPoints()) {
+				SDL_RenderDrawPointF(renderer, point.x, point.y);
+			}
 		}
 
 		SDL_RenderPresent(renderer);
 	}
 
-	void clear() {
-		points.clear();
+	void clearPolygonPoints() {
+		for (auto& poly : polygons) {
+			poly.clearPoints();
+		}
+	}
+
+	std::vector<Polygon>& getPolygons() {
+		return polygons;
 	}
 
 	void input() {

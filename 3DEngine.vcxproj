@@ -136,6 +136,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="polygon.h" />
     <ClInclude Include="renderer3d.h" />
     <ClInclude Include="screen.h" />
   </ItemGroup>
