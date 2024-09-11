@@ -93,7 +93,7 @@ public:
 			vertex.y -= centroid.y;
 			vertex.z -= centroid.z;
 
-			rotate(vertex, 0.02, 0.01, 0.04);
+			rotate(vertex, 0.02, 0.00, 0.04);
 
 			vertex.x += centroid.x;
 			vertex.y += centroid.y;

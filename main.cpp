@@ -36,22 +36,31 @@ int main(int argc, char* argv[]) {
 	};
 	Polygon cube{ cubeVertices, cubeEdges };
 
-	std::vector<Vector3D> secondCubeVertices{
-		{300, 100, 100},
-		{400, 100, 100},
-		{400, 200, 100},
+	std::vector<Vector3D> pyramidVertices{
 		{300, 200, 100},
-
-		{300, 100, 200},
-		{400, 100, 200},
+		{300, 200, 200},
 		{400, 200, 200},
-		{300, 200, 200}
+		{400, 200, 100},
+
+		{350, 100, 150}
 	};
 
-	Polygon secondCube{ secondCubeVertices, cubeEdges };
+	std::vector<Edge> pyramidEdges{
+		{0, 1},
+		{1, 2},
+		{2, 3},
+		{3, 0},
+
+		{0, 4},
+		{1, 4},
+		{2, 4},
+		{3, 4}
+	};
+
+	Polygon pyramid{ pyramidVertices, pyramidEdges };
 
 	screen.addPolygon(cube);
-	screen.addPolygon(secondCube);
+	screen.addPolygon(pyramid);
 
 	while (true) {
 		for (auto& polygon : screen.getPolygons()) {
