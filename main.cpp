@@ -3,46 +3,6 @@
 #include <iostream>
 #include "polygon.h"
 
-//void rotate(Vector3D& point, float x = 1, float y = 1, float z = 1) {
-//	float rad = 0;
-//	float rotatedX = 0;
-//	float rotatedY = 0;
-//	float rotatedZ = 0;
-//
-//	rad = x;
-//	rotatedY = std::cos(rad) * point.y - std::sin(rad) * point.z;
-//	rotatedZ = std::sin(rad) * point.y + std::cos(rad) * point.z;
-//	point.y = rotatedY;
-//	point.z = rotatedZ;
-//
-//	rad = y;
-//	rotatedX = std::cos(rad) * point.x + std::sin(rad) * point.z;
-//	rotatedZ = -std::sin(rad) * point.x + std::cos(rad) * point.z;
-//	point.x = rotatedX;
-//	point.z = rotatedZ;
-//
-//	rad = z;
-//	rotatedX = std::cos(rad) * point.x - std::sin(rad) * point.y;
-//	rotatedY = std::sin(rad) * point.x + std::cos(rad) * point.y;
-//	point.x = rotatedX;
-//	point.y = rotatedY;
-//}
-
-//void line(Screen& screen, float x1, float y1, float x2, float y2) {
-//	float dx = x2 - x1;
-//	float dy = y2 - y1;
-//
-//	float length = std::sqrt(dx * dx + dy * dy);
-//	float angle = std::atan2(dy, dx);
-//
-//	for (float i = 0; i < length; i++) {
-//		screen.pixel(
-//			x1 + std::cos(angle) * i,
-//			y1 + std::sin(angle) * i
-//		);
-//	}
-//}
-
 int main(int argc, char* argv[]) {
 	Screen screen;
 
@@ -76,7 +36,22 @@ int main(int argc, char* argv[]) {
 	};
 	Polygon cube{ cubeVertices, cubeEdges };
 
+	std::vector<Vector3D> secondCubeVertices{
+		{300, 100, 100},
+		{400, 100, 100},
+		{400, 200, 100},
+		{300, 200, 100},
+
+		{300, 100, 200},
+		{400, 100, 200},
+		{400, 200, 200},
+		{300, 200, 200}
+	};
+
+	Polygon secondCube{ secondCubeVertices, cubeEdges };
+
 	screen.addPolygon(cube);
+	screen.addPolygon(secondCube);
 
 	while (true) {
 		for (auto& polygon : screen.getPolygons()) {
