@@ -42,6 +42,7 @@ class Polygon {
 	std::vector<Vector3D> vertices;
 	std::vector<Edge> edges;
 	Vector3D centroid;
+	std::string name;
 
 	Vector3D calculateCentroid() {
 		Vector3D c{ 0,0,0 };
@@ -83,7 +84,8 @@ class Polygon {
 	}
 
 public:
-	Polygon(std::vector<Vector3D> _vertices, std::vector<Edge> _edges) {
+	Polygon(std::string _name, std::vector<Vector3D> _vertices, std::vector<Edge> _edges) {
+		name = _name;
 		vertices = _vertices;
 		edges = _edges;
 		centroid = calculateCentroid();
@@ -122,5 +124,9 @@ public:
 
 	std::vector<SDL_FPoint> getPoints() {
 		return points;
+	}
+
+	std::string getName() {
+		return name;
 	}
 };

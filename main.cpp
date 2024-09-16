@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 		{6, 7},
 		{7, 4}
 	};
-	Polygon cube{ cubeVertices, cubeEdges };
+	Polygon cube{"Cube", cubeVertices, cubeEdges};
 
 	std::vector<Vector3D> pyramidVertices{
 		{300, 200, 100},
@@ -58,8 +58,8 @@ int main(int argc, char* argv[]) {
 		{3, 4}
 	};
 
-	Polygon pyramid{ pyramidVertices, pyramidEdges };
-	Polygon line{ std::vector<Vector3D>{{540, 360, 100}, {740, 360, 100}}, std::vector<Edge>{{0,1}} };
+	Polygon pyramid{"Pyramid", pyramidVertices, pyramidEdges};
+	Polygon line{"Line", std::vector<Vector3D>{{540, 360, 100}, {740, 360, 100}}, std::vector<Edge>{{0,1}}};
 
 	screen.addPolygon(cube);
 	screen.addPolygon(pyramid);
