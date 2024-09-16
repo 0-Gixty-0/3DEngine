@@ -5,6 +5,7 @@
 
 int main(int argc, char* argv[]) {
 	Screen screen;
+	Polygon* activePolygonPtr = nullptr;
 
 	std::vector<Vector3D> cubeVertices{
 		{100, 100, 100},
@@ -63,10 +64,11 @@ int main(int argc, char* argv[]) {
 	screen.addPolygon(pyramid);
 
 	while (true) {
-		for (auto& polygon : screen.getPolygons()) {
-			polygon.applyRotation();
-			polygon.drawLines();
-		}
+		activePolygonPtr = &screen.getActivePolygon();
+		Polygon& polygon = *activePolygonPtr;
+
+		polygon.applyRotation();
+		polygon.drawLines();
 
 		screen.showPolygons();
 		screen.clearPolygonPoints();

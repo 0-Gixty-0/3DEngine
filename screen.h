@@ -10,12 +10,14 @@ class Screen {
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	std::vector<Polygon> polygons;
+	int activePolygonIndex;
 
 public:
 	Screen() {
 		SDL_Init(SDL_INIT_VIDEO);
 		SDL_CreateWindowAndRenderer(640*2, 360*2, 0, &window, &renderer);
 		SDL_RenderSetScale(renderer, 2, 2);
+		activePolygonIndex = 0;
 	}
 
 	void addPolygon(Polygon &polygon) {
@@ -46,12 +48,33 @@ public:
 		return polygons;
 	}
 
+	Polygon& getActivePolygon() {
+		return polygons[activePolygonIndex];
+	}
+
 	void input() {
 		// Loop until there are no more pending events to process.
 		while (SDL_PollEvent(&event) != 0) {
 			if (event.type == SDL_QUIT) {
 				SDL_Quit(); // Stop running if the window is closed
 				exit(0);
+			}
+			else if (event.type == SDL_KEYDOWN) {
+				if (event.key.keysym.sym == SDLK_RIGHT) {
+					if (activePolygonIndex < polygons.size() - 1) {
+						activePolygonIndex += 1;
+					}
+					else {
+						activePolygonIndex = 0;
+					}
+				} else if (event.key.keysym.sym == SDLK_LEFT) {
+					if (activePolygonIndex > 0) {
+						activePolygonIndex -= 1;
+					}
+					else {
+						activePolygonIndex = polygons.size() - 1;
+					}
+				}
 			}
 		}
 	}
