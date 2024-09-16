@@ -72,10 +72,22 @@ class Polygon {
 		}
 	}
 
+	void translateToScreenCenter() {
+		int xTranslation = 320 - centroid.x;
+		int yTranslation = 180 - centroid.y;
+
+		for (auto& vertex : vertices) {
+			vertex.x += xTranslation;
+			vertex.y += yTranslation;
+		}
+	}
+
 public:
 	Polygon(std::vector<Vector3D> _vertices, std::vector<Edge> _edges) {
 		vertices = _vertices;
 		edges = _edges;
+		centroid = calculateCentroid();
+		translateToScreenCenter();
 		centroid = calculateCentroid();
 	}
 

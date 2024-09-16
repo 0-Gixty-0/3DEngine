@@ -59,9 +59,11 @@ int main(int argc, char* argv[]) {
 	};
 
 	Polygon pyramid{ pyramidVertices, pyramidEdges };
+	Polygon line{ std::vector<Vector3D>{{540, 360, 100}, {740, 360, 100}}, std::vector<Edge>{{0,1}} };
 
 	screen.addPolygon(cube);
 	screen.addPolygon(pyramid);
+	screen.addPolygon(line);
 
 	while (true) {
 		activePolygonPtr = &screen.getActivePolygon();

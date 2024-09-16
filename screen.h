@@ -28,11 +28,16 @@ public:
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+		SDL_RenderDrawPointF(renderer, 319, 180);
+		SDL_RenderDrawPointF(renderer, 320, 180);
+		SDL_RenderDrawPointF(renderer, 321, 180);
+		SDL_RenderDrawPointF(renderer, 320, 181);
+		SDL_RenderDrawPointF(renderer, 320, 179);
+
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-		for (auto& polygon : polygons) {
-			for (auto& point : polygon.getPoints()) {
-				SDL_RenderDrawPointF(renderer, point.x, point.y);
-			}
+		for (auto& point : polygons[activePolygonIndex].getPoints()) {
+			SDL_RenderDrawPointF(renderer, point.x, point.y);
 		}
 
 		SDL_RenderPresent(renderer);
